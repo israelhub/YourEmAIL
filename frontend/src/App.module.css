@@ -1,0 +1,152 @@
+.app {
+  min-height: 100vh;
+  background: var(--gray-50);
+  color: var(--brand-text);
+  overflow-x: hidden; /* evita faixa branca lateral por overflow */
+}
+.header {
+  background: var(--nav-dark);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.navInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+}
+.logoImg {
+  height: 45px;
+}
+.links {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-left: 2.5rem;
+}
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s, color 0.2s;
+  text-decoration: none;
+}
+.navLink:link,
+.navLink:visited,
+.navLink:hover,
+.navLink:active {
+  text-decoration: none;
+}
+.active {
+  background: #fff;
+  color: var(--nav-dark);
+}
+.inactive {
+  color: #e5e7eb;
+}
+.inactive:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+}
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .nav {
+    padding: 0 1.5rem;
+  }
+  .container {
+    padding: 2rem 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .nav {
+    padding: 0 2rem;
+  }
+  .container {
+    padding: 2rem 2rem;
+  }
+}
+
+/* Telas bem grandes: remover padding acumulado na nav */
+@media (min-width: 1200px) {
+  .nav {
+    padding: 0;
+  }
+}
+
+/* Mobile/estreitas <= 600px: layout baseado no Figma e previne corte/overflow */
+@media (max-width: 600px) {
+  .header {
+    border-bottom: 1px solid #d9d9d9;
+  }
+  .navInner {
+    height: auto;
+  padding: 24px 0 20px;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  }
+  .brand {
+    width: 100%;
+    justify-content: center;
+  }
+  .logoImg {
+    height: 57px;
+  }
+  .links {
+    width: 100%;
+  justify-content: center;
+  flex-wrap: wrap; /* permite quebra para não cortar header */
+  margin-left: 0;
+  gap: 16px;
+  }
+  .navLink {
+    border-radius: 16px;
+  padding: 10px 12px; /* menos padding lateral para não quebrar */
+    font-weight: 400;
+    font-size: 15px; /* ligeiramente menor */
+    white-space: nowrap; /* impede quebra de linha */
+    border: 1px solid #2c2c2c;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .active {
+    background: #f5f5f5;
+    color: #1e1e1e;
+  }
+  .inactive {
+    background: #f87d0c;
+    color: #f5f5f5;
+  }
+  .inactive:hover {
+    background: #f87d0c;
+    color: #fff;
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
