@@ -1,0 +1,175 @@
+# ===================================
+# LOGS E DEBUG
+# ===================================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+pip-log.txt
+
+# ===================================
+# DEPENDÊNCIAS E BUILDS
+# ===================================
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+build/
+*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ===================================
+# AMBIENTES VIRTUAIS
+# ===================================
+.venv/
+.conda/
+pipenv/
+Pipfile.lock
+
+# ===================================
+# CONFIGURAÇÕES DE EDITOR/IDE
+# ===================================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.idea/
+.spyderproject
+.spyproject
+.ropeproject
+*.swp
+*.swo
+*~
+
+# ===================================
+# VARIÁVEIS DE AMBIENTE E CREDENCIAIS
+# ===================================
+.env
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Credenciais específicas do projeto
+credentials.json
+token.json
+client_secret*.json
+service-account*.json
+*.pem
+*.key
+*.crt
+
+# ===================================
+# APIs E SERVIÇOS EXTERNOS
+# ===================================
+# Google API
+google-credentials/
+gmail-token/
+oauth-credentials/
+
+# Gemini/AI API keys
+gemini-config.json
+ai-keys.json
+
+# ===================================
+# ARQUIVOS TEMPORÁRIOS E CACHE
+# ===================================
+# Python
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Node.js
+.npm
+.eslintcache
+.nyc_output
+
+# Sistema
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.tmp
+*.temp
+
+# ===================================
+# ARQUIVOS DE CONFIGURAÇÃO LOCAL
+# ===================================
+# Configurações locais de desenvolvimento
+config/local.py
+config/local.js
+local_settings.py
+settings_local.py
+
+# ===================================
+# DADOS E UPLOADS
+# ===================================
+# Dados de teste/desenvolvimento
+data/
+uploads/
+downloads/
+temp/
+tmp/
+
+# Emails de exemplo/teste (se contiverem dados sensíveis)
+emails-test/
+sample-emails/
+
+# ===================================
+# JUPYTER NOTEBOOKS (se usados)
+# ===================================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# ===================================
+# DOCKER (se usado)
+# ===================================
+docker-compose.override.yml
+.dockerignore
+
+# ===================================
+# BACKUP E VERSIONING
+# ===================================
+*.bak
+*.backup
+*.old
+*.orig
+
+# ===================================
+# ARQUIVOS ESPECÍFICOS DO PROJETO
+# ===================================
+# Logs de classificação
+classification-logs/
+email-analysis/
+
+# Modelos treinados (se muito grandes)
+models/*.pkl
+models/*.joblib
+*.model
