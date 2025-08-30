@@ -1,0 +1,5 @@
+{
+  "name": "YourEmail",
+  "description": "Uma aplicação web que utiliza IA para classificar emails como produtivos ou improdutivos e sugerir respostas automáticas, otimizando a comunicação e a produtividade da equipe.",
+  "requestFramePermissions": []
+}
