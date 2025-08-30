@@ -1,0 +1,50 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  overflow-y: auto;
+}
+.dialog {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  max-width: 720px;
+  width: 100%;
+  padding: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  margin: auto;
+  /* Garante que o modal não "dance" com o scroll */
+  transform: translateZ(0);
+  will-change: transform;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.closeBtn {
+  appearance: none;
+  border: 1px solid var(--gray-300);
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+}
+.closeBtn:hover {
+  background: var(--gray-50);
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    padding: 0.75rem;
+    max-width: 100%;
+    border-radius: 10px;
+  }
+}
