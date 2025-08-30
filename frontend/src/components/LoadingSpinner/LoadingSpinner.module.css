@@ -1,0 +1,25 @@
+.sm {
+  width: 1rem;
+  height: 1rem;
+}
+.md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.lg {
+  width: 2rem;
+  height: 2rem;
+}
+.spinner {
+  border-radius: 9999px;
+  border-bottom: 2px solid #fff;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
