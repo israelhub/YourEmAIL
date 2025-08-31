@@ -18,4 +18,4 @@ else:
 
 # Porta e Debug
 PORT = int(os.getenv("PORT") or os.getenv("BACKEND_PORT") or 5000)
-DEBUG = (os.getenv("FLASK_DEBUG") or os.getenv("DEBUG") or "true").lower() in {"1", "true", "yes", "on"}
+DEBUG = (os.getenv("FLASK_DEBUG") or os.getenv("DEBUG") or "false").lower() in {"1", "true", "yes", "on"}

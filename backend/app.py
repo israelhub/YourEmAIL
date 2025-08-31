@@ -12,6 +12,11 @@ if CORS_ALLOWED_ORIGINS == "*":
 else:
     CORS(app, resources={r"/api/*": {"origins": CORS_ALLOWED_ORIGINS}})
 
+@app.route('/')
+def health_check():
+    """Health check endpoint para serviços de deploy."""
+    return jsonify({'status': 'ok', 'message': 'Email Classifier API is running'})
+
 @app.route('/api/classify', methods=['POST'])
 def classify_email():
     data = request.get_json(force=True, silent=True) or {}
@@ -126,4 +131,8 @@ def classify_batch():
 
 
 if __name__ == '__main__':
-    app.run(debug=DEBUG, port=PORT)
+    # Para deploy em produção (Render, Heroku, etc.), escuta em 0.0.0.0
+    # Em desenvolvimento local, continuará funcionando normalmente
+    import os
+    port = int(os.environ.get('PORT', PORT))
+    app.run(debug=DEBUG, host='0.0.0.0', port=port)
