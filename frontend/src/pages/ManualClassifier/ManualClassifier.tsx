@@ -40,34 +40,75 @@ const ManualClassifier: React.FC = () => {
         resetState();
         setFileName(file.name);
         
-        if (file.type === 'text/plain') {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                setEmailText(e.target?.result as string);
-            };
-            reader.readAsText(file);
-        } else if (file.type === 'application/pdf') {
-            const reader = new FileReader();
-            reader.onload = async (e) => {
-                const typedArray = new Uint8Array(e.target?.result as ArrayBuffer);
-                try {
-                    const pdf = await pdfjsLib.getDocument(typedArray).promise;
-                    let textContent = '';
-                    for (let i = 1; i <= pdf.numPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const text = await page.getTextContent();
-                        textContent += text.items.map((s: any) => s.str).join(' ');
+        try {
+            if (file.type === 'text/plain') {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const content = e.target?.result as string;
+                    if (content) {
+                        setEmailText(content);
+                    } else {
+                        alert('Erro: arquivo de texto vazio ou não pôde ser lido.');
+                        setFileName(null);
                     }
-                    setEmailText(textContent);
-                } catch (pdfError) {
-                    console.error('Error parsing PDF:', pdfError);
-                    // setError from hook won't work here since it's outside the hook's flow
-                    alert('Erro ao processar o arquivo PDF.');
+                };
+                reader.onerror = () => {
+                    alert('Erro ao ler o arquivo de texto.');
+                    setFileName(null);
+                };
+                reader.readAsText(file);
+            } else if (file.type === 'application/pdf') {
+                // Verificar se o PDF.js está disponível
+                if (typeof pdfjsLib === 'undefined') {
+                    alert('Erro: PDF.js não foi carregado. Recarregue a página e tente novamente.');
+                    setFileName(null);
+                    return;
                 }
-            };
-            reader.readAsArrayBuffer(file);
-        } else {
-            alert('Formato de arquivo não suportado. Use .txt ou .pdf.');
+                
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const arrayBuffer = e.target?.result as ArrayBuffer;
+                    if (!arrayBuffer) {
+                        alert('Erro ao ler o arquivo PDF.');
+                        setFileName(null);
+                        return;
+                    }
+                    
+                    try {
+                        const typedArray = new Uint8Array(arrayBuffer);
+                        const pdf = await pdfjsLib.getDocument(typedArray).promise;
+                        let textContent = '';
+                        
+                        for (let i = 1; i <= pdf.numPages; i++) {
+                            const page = await pdf.getPage(i);
+                            const text = await page.getTextContent();
+                            textContent += text.items.map((s: any) => s.str || '').join(' ') + '\n';
+                        }
+                        
+                        if (textContent.trim()) {
+                            setEmailText(textContent.trim());
+                        } else {
+                            alert('Aviso: O PDF não contém texto legível ou está vazio.');
+                            setEmailText('');
+                        }
+                    } catch (pdfError) {
+                        console.error('Error parsing PDF:', pdfError);
+                        alert(`Erro ao processar o arquivo PDF: ${pdfError.message || 'Arquivo pode estar corrompido ou protegido.'}`);
+                        setFileName(null);
+                    }
+                };
+                reader.onerror = () => {
+                    alert('Erro ao ler o arquivo PDF.');
+                    setFileName(null);
+                };
+                reader.readAsArrayBuffer(file);
+            } else {
+                alert('Formato de arquivo não suportado. Use apenas arquivos .txt ou .pdf.');
+                setFileName(null);
+            }
+        } catch (generalError) {
+            console.error('General file processing error:', generalError);
+            alert('Erro inesperado ao processar o arquivo. Tente novamente.');
             setFileName(null);
         }
     }, []);

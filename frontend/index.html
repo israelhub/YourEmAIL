@@ -8,6 +8,12 @@
     
     <!-- Google APIs necessárias para autenticação -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <!-- PDF.js para leitura de arquivos PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    </script>
   </head>
   <body>
     <div id="root"></div>
