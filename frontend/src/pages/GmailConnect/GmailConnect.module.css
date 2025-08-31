@@ -1,0 +1,15 @@
+.center{max-width:72rem;margin:0 auto;text-align:center;padding:0 16px;margin-top:calc(12px - 2rem);display:flex;flex-direction:column;align-items:center;gap:30px}
+.title{font-size:clamp(1.25rem,1.5vw + 1rem,2rem);font-weight:800;color:#0b1a2b;margin:0}
+.lead{margin:0;font-size:1.0625rem;color:var(--gray-600);max-width:48rem;text-align:center}
+.card{background:#fff;padding:24px 100px;border-radius:12px;box-shadow:0 10px 15px rgba(0,0,0,.1);max-width:48rem;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.stepsWrap{margin:0}
+.howtoTitle{font-size:1.125rem;font-weight:700;color:#0b1a2b;margin:0 0 .75rem}
+.ul{color:var(--gray-700);text-align:left;display:flex;flex-direction:column;gap:8px;padding:0;margin:0;list-style:none}
+.li{display:flex;align-items:center;gap:10px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:8px;padding:10px 12px;font-size:.9375rem}
+.liIndex{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;min-width:28px;border-radius:999px;background:#FEE7D2;color:#F87D0C;font-weight:700;font-size:.875rem}
+.error{background:var(--red-100);color:#b91c1c;padding:.75rem;border-radius:.375rem;font-size:.875rem;margin-bottom:1rem}
+.googleBtn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.25rem;border:1px solid transparent;font-size:1rem;font-weight:700;border-radius:.75rem;color:#fff;background:var(--brand-primary);box-shadow:0 1px 2px rgba(0,0,0,.06);transition:all 0.2s ease;cursor:pointer}
+.googleBtn:hover:not(:disabled){background:#E06A0A;box-shadow:0 4px 8px rgba(0,0,0,.12);transform:translateY(-1px)}
+.googleBtn:disabled{background:#F87D0C;opacity:.8}
+.finePrint{font-size:.75rem;color:var(--gray-500);margin-top:1rem}
+@media (max-width: 480px){.card{padding:16px;border-radius:12px;box-shadow:0 4px 4px rgba(0,0,0,.25);width:100%}.lead{font-size:1rem}.li{padding:10px 12px;gap:10px}}
