@@ -215,20 +215,18 @@ const GmailClassifier: React.FC = () => {
                     </div>
                 </div>
 
-                <Modal open={showGuidelines} onClose={() => setShowGuidelines(false)}>
-                    <GuidelinesModal
-                        open={showGuidelines}
-                        onClose={() => setShowGuidelines(false)}
-                        produtivoText={produtivoText}
-                        improdutivoText={improdutivoText}
-                        setProdutivoText={setProdutivoText}
-                        setImprodutivoText={setImprodutivoText}
-                        onSave={saveGuidelines}
-                        showGmailTags={true}
-                        applyGmailTags={applyGmailTags}
-                        setApplyGmailTags={setApplyGmailTags}
-                    />
-                </Modal>
+                <GuidelinesModal
+                    open={showGuidelines}
+                    onClose={() => setShowGuidelines(false)}
+                    produtivoText={produtivoText}
+                    improdutivoText={improdutivoText}
+                    setProdutivoText={setProdutivoText}
+                    setImprodutivoText={setImprodutivoText}
+                    onSave={saveGuidelines}
+                    showGmailTags={true}
+                    applyGmailTags={applyGmailTags}
+                    setApplyGmailTags={setApplyGmailTags}
+                />
 
             {/* Error display */}
             {error && (

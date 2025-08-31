@@ -6,9 +6,11 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   hideHeader?: boolean;
+  fullScreen?: boolean;
+  size?: 'md' | 'lg' | 'xl';
 }
 
-const Modal: React.FC<ModalProps> = ({ open, onClose, children, hideHeader }) => {
+const Modal: React.FC<ModalProps> = ({ open, onClose, children, hideHeader, fullScreen = false, size = 'md' }) => {
   useEffect(() => {
     if (!open) return;
     
@@ -28,9 +30,17 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, children, hideHeader }) =>
   }, [open, onClose]);
 
   if (!open) return null;
+  const dialogClass = fullScreen
+    ? styles.dialogFull
+    : size === 'xl'
+      ? `${styles.dialog} ${styles.dialogXl}`
+      : size === 'lg'
+        ? `${styles.dialog} ${styles.dialogLg}`
+        : styles.dialog;
+
   return (
     <div className={styles.overlay} role="dialog" aria-modal="true" onClick={onClose}>
-      <div className={styles.dialog} onClick={(e)=>e.stopPropagation()}>
+      <div className={dialogClass} onClick={(e)=>e.stopPropagation()}>
     {!hideHeader && (
           <div className={styles.header}>
       <button type="button" onClick={onClose} className={styles.closeBtn} aria-label="Fechar">✕</button>

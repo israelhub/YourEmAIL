@@ -33,7 +33,7 @@ const GuidelinesModal: React.FC<GuidelinesModalProps> = ({
   };
 
   return (
-    <Modal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose} size="lg">
       <div className={styles.container}>
         <h3 className={styles.title}>Personalizar Diretrizes</h3>
         <p className={styles.description}>

@@ -7,7 +7,12 @@
   justify-content: center;
   z-index: 1000;
   padding: 1rem;
-  overflow-y: auto;
+  /* Evita scrollbar externo quando o conteúdo do modal já tem scroll interno */
+  overflow: hidden;
+}
+
+.overlayFull {
+  padding: 0; /* para fullScreen, o dialog já tem padding interno */
 }
 .dialog {
   position: relative;
@@ -23,6 +28,21 @@
   /* Garante que o modal não "dance" com o scroll */
   transform: translateZ(0);
   will-change: transform;
+}
+
+.dialogLg { max-width: 960px; }
+.dialogXl { max-width: 1200px; }
+
+/* Variante para ocupar a tela inteira */
+.dialogFull {
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  border-radius: 0;
+  padding: 1.25rem;
+  overflow: auto;
 }
 .header {
   display: flex;
@@ -46,5 +66,8 @@
     padding: 0.75rem;
     max-width: 100%;
     border-radius: 10px;
+  }
+  .dialogFull {
+    padding: 0.75rem;
   }
 }
