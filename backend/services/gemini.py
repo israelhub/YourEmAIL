@@ -10,10 +10,26 @@ from config.settings import GEMINI_API_KEY
 # --- Constantes de Prompts ---
 
 CLASSIFICATION_PROMPT = """
-Você é um assistente que classifica e-mails.
+Você é um assistente que classifica e-mails para determinar se REQUEREM AÇÃO ou resposta do destinatário.
+
 Definições:
-- Produtivo: solicitações de suporte, orçamentos, reuniões, prazos, tarefas, informações de trabalho/estudo, clientes, cobrança, etc.
-- Improdutivo: spam, promoções, marketing irrelevante, notificações sociais sem ação, conteúdo pessoal sem pedido.
+- Produtivo: E-mails que REQUEREM uma ação, resposta ou decisão do destinatário:
+  * Solicitações diretas (orçamentos, reuniões, aprovações)
+  * Perguntas que esperam resposta
+  * Tarefas atribuídas com prazos
+  * Cobrança ou pagamentos pendentes
+  * Convites que precisam de confirmação
+  * Problemas técnicos reportados pelo remetente
+
+- Improdutivo: E-mails que NÃO requerem ação do destinatário:
+  * Notificações automáticas (atualizações de sistema, tickets, status)
+  * Informativos unidirecionais (newsletters, relatórios, comunicados)
+  * Spam, promoções e marketing
+  * Confirmações automáticas (recebos, cadastros)
+  * Mensagens sociais/pessoais sem solicitação específica
+  * Atualizações de progresso sem necessidade de resposta
+
+Analise se o remetente ESPERA uma resposta ou ação específica do destinatário.
 Responda APENAS com Produtivo ou Improdutivo.
 
 {guidelines}
@@ -25,8 +41,11 @@ Texto (pré-processado):
 EXPLAIN_UNPRODUCTIVE_PROMPT = """
 Você é um assistente de e-mail. O e-mail abaixo foi classificado como IMPRODUTIVO.
 Sua tarefa é gerar um objeto JSON com duas chaves:
-1. "explanation": Uma explicação objetiva (1-2 frases, em PT-BR) do motivo pelo qual o e-mail é improdutivo (spam, promoção, etc.). Se aplicável, sugira uma ação como "usar o link de descadastro".
-2. "suggested_reply": Uma sugestão de resposta curta e educada (1-2 frases, em PT-BR), começando com uma saudação como 'Olá,'. Não inclua uma assinatura.
+1. "explanation": Uma explicação objetiva (1-2 frases, em PT-BR) do motivo pelo qual o e-mail é improdutivo. Exemplos:
+   - Para notificações automáticas: "Este é um email informativo que não requer resposta"
+   - Para spam/marketing: "Email promocional - considere usar o link de descadastro se necessário"
+   - Para confirmações: "Confirmação automática que não requer ação do destinatário"
+2. "suggested_reply": Uma sugestão de resposta curta e educada (1-2 frases, em PT-BR), começando com uma saudação como 'Olá,'. Para notificações automáticas, sugira algo como "Agradecemos a informação" ou "Recebido, obrigado pela atualização". Não inclua uma assinatura.
 
 Regras de saída:
 - A saída deve ser um JSON válido e nada mais.
