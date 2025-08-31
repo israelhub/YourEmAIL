@@ -132,7 +132,6 @@ settings_local.py
 # DADOS E UPLOADS
 # ===================================
 # Dados de teste/desenvolvimento
-data/
 uploads/
 downloads/
 temp/
