@@ -16,6 +16,6 @@ if _cors_env == "*":
 else:
     CORS_ALLOWED_ORIGINS = [o.strip() for o in _cors_env.split(",") if o.strip()]
 
-# Porta e Debug
-PORT = int(os.getenv("PORT") or os.getenv("BACKEND_PORT") or 5000)
+# Porta e Debug - Render usa a variável PORT
+PORT = int(os.getenv("PORT") or os.getenv("BACKEND_PORT") or 10000)
 DEBUG = (os.getenv("FLASK_DEBUG") or os.getenv("DEBUG") or "false").lower() in {"1", "true", "yes", "on"}
