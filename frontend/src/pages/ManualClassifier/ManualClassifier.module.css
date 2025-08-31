@@ -1,0 +1,327 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* gap padrão no mobile */
+  flex-wrap: wrap;
+  align-items: stretch;
+  /* centraliza verticalmente no viewport sem contar o header (5rem) */
+  min-height: calc(100vh - 5rem);
+  justify-content: center;
+}
+.titleWrap {
+  padding: 1rem 0;
+}
+.title {
+  font-size: clamp(1.125rem, 2vw + 0.75rem, 2.25rem);
+  line-height: 1.25;
+  font-weight: 800;
+  color: #0b1a2b;
+  margin: 0 0 1rem;
+  text-align: left; /* centraliza apenas quando empilha */
+}
+.subtitle {
+  font-size: 1.5rem;
+  color: #0b1a2b;
+  max-width: 40ch;
+}
+.card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  margin-bottom: 0.5rem;
+}
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease;
+}
+.textarea:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.fileLabel {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--gray-300);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  color: var(--gray-700);
+  background: #fff;
+}
+.fileLabel:hover {
+  background: var(--gray-50);
+}
+.fileName {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  max-width: 18rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.clearBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  color: var(--gray-700);
+  background: var(--gray-100);
+}
+.clearBtn:hover {
+  background: #d1d5db;
+}
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  color: #fff;
+  background: var(--brand-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.submitBtn:hover:not(:disabled) {
+  background: #E06A0A;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+.submitBtn:disabled {
+  background: #F87D0C;
+  cursor: not-allowed;
+}
+.alert {
+  background: var(--red-100);
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+  padding: 1rem;
+  border-radius: 0.375rem;
+}
+
+@media (min-width: 900px) {
+  .page { 
+    flex-direction: row; 
+    column-gap: 5rem; /* espaço central entre as colunas */
+    row-gap: 0;       /* sem espaço depois do card */
+  /* no desktop, centraliza também no eixo vertical */
+  align-items: center;
+  }
+  .titleWrap {
+    padding: 3rem 0;
+  }
+  .row {
+  flex-direction: row;
+  }
+}
+
+/* Quando empilha (abaixo de 900px), centraliza o título */
+@media (max-width: 899px) {
+  .title { text-align: center; }
+}
+
+/* As duas colunas ocupam o mesmo espaço para dividir igualmente em volta do gap */
+.titleWrap, .card { flex: 1 1 0; }
+
+/* Dropdown styles */
+.plusButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.5rem;
+  background: #fff;
+  cursor: pointer;
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.plusButton:hover {
+  background: var(--gray-50);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 0.25rem;
+  min-width: 200px;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  transition: background-color 0.15s ease;
+}
+
+.dropdownItem:hover {
+  background: var(--gray-50);
+}
+
+.dropdownItem:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.dropdownItem:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.dropdownIcon {
+  margin-right: 0.5rem;
+  width: 16px;
+  height: 16px;
+}
+
+/* Modal styles for guidelines */
+.guidelinesModal .textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.375rem;
+  transition: border-color 0.15s ease;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.guidelinesModal .textarea:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+.guidelinesModal .label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  margin-bottom: 0.5rem;
+}
+
+.guidelinesModal .modalButtons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.guidelinesModal .cancelBtn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.375rem;
+  background: #fff;
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.guidelinesModal .cancelBtn:hover {
+  background: var(--gray-50);
+}
+
+.guidelinesModal .saveBtn {
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  background: var(--brand-primary);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Wrapper dos resultados: quebra para a linha de baixo ocupando toda a largura */
+.results { flex: 1 1 100%; width: 100%; }
+
+/* Mobile <= 480px: layout baseado no Figma */
+@media (max-width: 480px) {
+  .page { min-height: auto; padding: 0 20px 24px; }
+  .titleWrap { padding: 0; }
+  .title { text-align: center; font-weight: 700; color:#000; max-width: 385px; margin: 0 auto 16px; font-size: clamp(1rem, 4.2vw, 1.35rem); }
+  .card {
+    width: 100%;
+    max-width: 385px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 4px 4px rgba(0,0,0,.25);
+    padding: 16px;
+  }
+  .label { font-size: 20px; font-weight: 600; color: #000; }
+  .textarea {
+    height: 359px;
+    border-radius: 8px;
+    border-color: #d9d9d9;
+    padding: 12px 16px;
+  }
+  .row { gap: 16px; justify-content: space-between; }
+  /* Upload (primeira coluna) e botões (segunda coluna) lado a lado */
+  .row > :first-child { flex: 1 1 calc(50% - 8px); min-width: 0; }
+  .row > .buttons { flex: 1 1 calc(50% - 8px); display:flex; justify-content:flex-end; }
+  .fileLabel { width: 100%; justify-content:center; }
+  .submitBtn { width: 100%; }
+  .fileLabel {
+    border-radius: 8px;
+    border-color: #2c2c2c;
+    background: #fff;
+    box-shadow: 0 0 0 0 rgba(0,0,0,0);
+    padding: 10px 12px; /* menos lateral para evitar quebra */
+  }
+  .submitBtn {
+    border-radius: 8px;
+    border: none; /* remove borda preta */
+    background: #F87D0C;
+    font-weight: 400;
+    padding: 10px 12px; /* menos lateral para evitar quebra */
+  }
+  .clearBtn { border-radius: 8px; border:1px solid #2c2c2c; background:#fff; font-weight:400; }
+}
